@@ -1,0 +1,22 @@
+{
+  "name": "vaultdragon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wilson13/VaultDragon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wilson13/VaultDragon/issues"
+  },
+  "homepage": "https://github.com/Wilson13/VaultDragon#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
