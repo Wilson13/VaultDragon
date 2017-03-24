@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     name: 'VaultDragon API2',
-    script: 'index.js'
+    script: 'vault_api.js'
   }],
   deploy: {
     production: {
