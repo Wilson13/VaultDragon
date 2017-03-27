@@ -94,7 +94,7 @@ router.route('/object/:key')
             if (object)
                 res.json(object);
 			else
-				res.json( { message: 'No object with key "' + req.params.key + '" was found.' });
+				res.json( { message: 'No object with key \'' + req.params.key + '\' was found.' });
         });
     });
 
