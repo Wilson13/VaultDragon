@@ -47,7 +47,7 @@ router.route('/object')
     // create a bear (accessed at POST http://localhost:3000/api/object)
     .post(function(req, res) {
 
-		req.checkBody("key", "Key value cannot be empty").isEmpty();
+		req.checkBody("key", "Key value cannot be empty").notEmpty();
 	
         var object = new Object();	// create a new instance of the Object model
         object.key = req.body.key;  // set the object key (comes from the request)
