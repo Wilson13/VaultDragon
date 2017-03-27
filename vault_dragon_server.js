@@ -45,8 +45,8 @@ router.route('/object')
     .post(function(req, res) {
         
         var object = new Object();	// create a new instance of the Object model
-        object.key = req.body.jey;  // set the object key (comes from the request)
-		object.key = req.body.jey;	// set the object key-paired value (comes from the request)
+        object.key = req.body.key;  // set the object key (comes from the request)
+		object.value = req.body.value;	// set the object key-paired value (comes from the request)
 
         // save the object and check for errors
         object.save(function(err) {
@@ -58,7 +58,7 @@ router.route('/object')
         
     })
 
-	 // get all the object (accessed at GET http://localhost:8080/api/object)
+	 // get all the object (accessed at GET http://localhost:3000/api/object)
     .get(function(req, res) {
 		Object.find(function(err, object) {
             if (err)
