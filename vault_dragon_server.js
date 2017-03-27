@@ -53,7 +53,10 @@ router.route('/object')
         object.key = req.body.key;  // set the object key (comes from the request)
 		object.value = req.body.value;	// set the object key-paired value (comes from the request)
 
-		var errors = req.validationErrors();
+		var result = req.getValidationResult();
+		result.useFirstErrorOnly();
+		var errors = result.mapped();
+		//var errors = req.validationErrors();
 		
 		// Validation errors
 		if (errors) {
