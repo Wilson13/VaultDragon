@@ -10,13 +10,14 @@ mongoose.connect('mongodb://localhost'); // connect to our database
 /*app.get('/', (req, res) => {
   res.send('Hello World!')
 })*/
-var Object = require('./models/object');
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 3000;        // set our port
+
+var Object = require('./models/object');
 
 // ROUTES FOR OUR API
 // =============================================================================
