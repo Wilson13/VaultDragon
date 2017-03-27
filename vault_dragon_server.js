@@ -3,6 +3,7 @@
 const express = require('express');
 const app = express();
 var bodyParser = require('body-parser');
+var validator = require('express-validator');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost'); // connect to our database
@@ -15,6 +16,7 @@ var Object = require('./models/object');
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(validator());
 
 var port = process.env.PORT || 3000;        // set our port
 
@@ -44,7 +46,9 @@ router.route('/object')
 
     // create a bear (accessed at POST http://localhost:3000/api/object)
     .post(function(req, res) {
-				
+
+		req.checkBody("key", "Enter a valid email address.").isEmail();
+	
         var object = new Object();	// create a new instance of the Object model
         object.key = req.body.key;  // set the object key (comes from the request)
 		object.value = req.body.value;	// set the object key-paired value (comes from the request)
