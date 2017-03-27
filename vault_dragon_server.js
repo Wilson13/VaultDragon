@@ -52,16 +52,16 @@ router.route('/object')
         var object = new Object();	// create a new instance of the Object model
         object.key = req.body.key;  // set the object key (comes from the request)
 		object.value = req.body.value;	// set the object key-paired value (comes from the request)
-		var errors;
-		req.getValidationResult().then( result => {
+		
+		/*req.getValidationResult().then( result => {
 			errors = result.useFirstErrorOnly().mapped(); // enjoy an array with no duplicated errors for any given parameter!
 			if (errors) {
 				res.send(errors);
 				return;
 			} 
-		})
+		})*/
 		//var errors = result;
-		//var errors = req.validationErrors();
+		var errors = req.validationErrors();
 		
 		// Validation errors
 		if (errors) {
