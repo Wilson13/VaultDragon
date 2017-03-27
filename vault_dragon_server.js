@@ -66,10 +66,10 @@ router.route('/object')
 				} else {
 					// If object is not null, object is updated.
 					if (object)
-						res.json({ message: 'Object updated! ' , 'Key' : object.key, 'Value' : req.body.value, 'Updated at' : Date.now() });
+						res.json({ message: 'Object updated! ' , 'Key' : object.key, 'Value' : req.body.value, 'Updated at' : Date.now().toISOString() });
 					// If object is null, new object is created.
 					else
-						res.json({ message: 'Object created! ' , 'Key' : + req.body.key, 'Value' : req.body.value, 'Created at' : Date.now() });
+						res.json({ message: 'Object created! ' , 'Key' : + req.body.key, 'Value' : req.body.value, 'Created at' : Date.now().toISOString() });
 				}
 			});
         }
