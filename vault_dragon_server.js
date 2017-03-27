@@ -69,6 +69,8 @@ router.route('/object')
 						else
 							res.json({ message: 'Object created! ' + req.body.value });
 					});
+				} else {
+					res.json({ message: 'Object updated! ' + req.body.value });
 				}
 			});
         }
