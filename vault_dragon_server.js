@@ -53,14 +53,21 @@ router.route('/object')
         object.key = req.body.key;  // set the object key (comes from the request)
 		object.value = req.body.value;	// set the object key-paired value (comes from the request)
 
-        // save the object and check for errors
-        object.save(function(err) {
-            if (err)
-                res.send(err);
-			else
-				res.json({ message: 'Object created! ' + req.body.value });
-        });
-        
+		var errors = req.validationErrors();
+		
+		// Validation errors
+		if (errors) {
+			res.send(errors);
+			return;
+		} else {
+			// save the object and check for errors
+			object.save(function(err) {
+				if (err)
+					res.send(err);
+				else
+					res.json({ message: 'Object created! ' + req.body.value });
+			});
+        }
     })
 
 	 // get all the object (accessed at GET http://localhost:3000/api/object)
