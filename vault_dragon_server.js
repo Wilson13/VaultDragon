@@ -74,7 +74,7 @@ router.route('/object')
 			});
         }
     })
-
+	
 	 // get all the object (accessed at GET http://localhost:3000/api/object)
     .get(function(req, res) {
 		Object.find(function(err, object) {
@@ -82,6 +82,19 @@ router.route('/object')
                 res.send(err);
 
             res.json(object);
+        });
+    });
+	
+// on routes that end in /object/:key
+router.route('/object/:key')
+	
+	// get the object with that key (accessed at GET http://localhost:8080/api/object/:key)
+    .get(function(req, res) {
+		Object.findOne({ key : req.params.key }, function(err, object) {
+            if (object)
+                res.json(object);
+			else
+				res.send(err);
         });
     });
 
