@@ -48,33 +48,28 @@ router.route('/object')
     .post(function(req, res) {
 
 		req.checkBody("key", "Key cannot be empty").notEmpty();
-		req.checkBody("value", "Value cannot be empty").notEmpty();
 	
+		var errors = req.validationErrors();
         var object = new Object();	// create a new instance of the Object model
         object.key = req.body.key;  // set the object key (comes from the request)
 		object.value = req.body.value;	// set the object key-paired value (comes from the request)
 		
-		/*req.getValidationResult().then( result => {
-			errors = result.useFirstErrorOnly().mapped(); // enjoy an array with no duplicated errors for any given parameter!
-			if (errors) {
-				res.send(errors);
-				return;
-			} 
-		})*/
-		//var errors = result;
-		var errors = req.validationErrors();
-		
-		// Validation errors
+		// Validation resulted errors
 		if (errors) {
 			res.send(errors);
 			return;
 		} else {
-			// save the object and check for errors
-			object.save(function(err) {
-				if (err)
-					res.send(err);
-				else
-					res.json({ message: 'Object created! ' + req.body.value });
+			// Find object and update it's value if it exists.
+			object.findOneAndUpdate({key : req.body.key}, {value : req.body.value} function (err, object) {
+				if (err){
+					// Create object and check for errors
+					object.save(function(err) {
+						if (err)
+							res.send(err);
+						else
+							res.json({ message: 'Object created! ' + req.body.value });
+					});
+				}
 			});
         }
     })
