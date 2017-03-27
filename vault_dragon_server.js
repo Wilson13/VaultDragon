@@ -56,7 +56,7 @@ router.route('/object')
             res.json({ message: 'Object created!' });
         });
         
-    });
+    })
 
 	 // get all the object (accessed at GET http://localhost:8080/api/object)
     .get(function(req, res) {
