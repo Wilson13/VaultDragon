@@ -92,7 +92,7 @@ router.route('/object/:key')
     .get(function(req, res) {
 		Object.findOne({ key : req.params.key }, function(err, object) {
             if (object)
-                res.json(object);
+                res.json(object.value);
 			else
 				res.json( { message: 'No object with key \'' + req.params.key + '\' was found.' });
         });
