@@ -3,7 +3,8 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 var ObjectSchema   = new Schema({
-    name: String
+    key: String,
+	value: String
 });
 
 module.exports = mongoose.model('Object', ObjectSchema);
