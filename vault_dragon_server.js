@@ -72,9 +72,9 @@ router.route('/object')
 				} else {
 					// If object is null, new object created
 					if (object)
-						res.json({ message: 'Object created! ' , 'Key :' + req.body.key, 'Value :' + req.body.value });
+						res.json({ message: 'Object created! ' , 'Key' : req.body.key, 'Value' : + req.body.value });
 					else
-						res.json({ message: 'Object updated! ' , 'Key :' + object.key, 'Value :' + object.value });
+						res.json({ message: 'Object updated! ' , 'Key' : + object.key, 'Value' : + object.value });
 				}
 			});
         }
