@@ -62,20 +62,14 @@ router.route('/object')
 			// Find object and update it's value if it exists.
 			Object.findOneAndUpdate({key : req.body.key}, {value : req.body.value}, {upsert: true}, function (err, object) {
 				if (err){
-					/*// Create object and check for errors
-					object.save(function(err) {
-						if (err)
-							res.send(err);
-						else
-							res.json({ message: 'Object created! ' + req.body.value });
-					});*/
+					res.send(err);
 				} else {
 					// If object is not null, object is updated.
 					if (object)
-						res.json({ message: 'Object updated! ' , 'Key' : object.key, 'Value' : object.value });
+						res.json({ message: 'Object updated! ' , 'Key' : object.key, 'Value' : req.body.value, 'Updated at' : Date.now() });
 					// If object is null, new object is created.
 					else
-						res.json({ message: 'Object created! ' , 'Key' : + req.body.key, 'Value' : req.body.value });
+						res.json({ message: 'Object created! ' , 'Key' : + req.body.key, 'Value' : req.body.value, 'Created at' : Date.now() });
 				}
 			});
         }
