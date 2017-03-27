@@ -54,8 +54,8 @@ router.route('/object')
 		object.value = req.body.value;	// set the object key-paired value (comes from the request)
 
 		var result = req.getValidationResult();
-		result.useFirstErrorOnly();
-		var errors = result.mapped();
+		result.useFirstErrorOnly().mapped;
+		var errors = result;
 		//var errors = req.validationErrors();
 		
 		// Validation errors
