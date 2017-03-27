@@ -44,7 +44,7 @@ router.route('/object')
     // create a bear (accessed at POST http://localhost:3000/api/object)
     .post(function(req, res) {
         
-		var post = new Object({
+		var object = new Object({
 			key: req.body.key,
 			value: req.body.value
 		});
