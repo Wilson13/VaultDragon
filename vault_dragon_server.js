@@ -60,17 +60,17 @@ router.route('/object')
 			return;
 		} else {
 			// Find object and update it's value if it exists.
-			Object.findOneAndUpdate({key : req.body.key}, {value : req.body.value}, function (err, object) {
+			Object.findOneAndUpdate({key : req.body.key}, {value : req.body.value}, {upsert: true}, function (err, object) {
 				if (err){
-					// Create object and check for errors
+					/*// Create object and check for errors
 					object.save(function(err) {
 						if (err)
 							res.send(err);
 						else
 							res.json({ message: 'Object created! ' + req.body.value });
-					});
+					});*/
 				} else {
-					res.json({ message: 'Object updated! ' + object.value });
+					res.json({ message: 'Object created! ' + object });
 				}
 			});
         }
