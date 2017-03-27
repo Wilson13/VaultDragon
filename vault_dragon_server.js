@@ -57,8 +57,8 @@ router.route('/object')
         object.save(function(err) {
             if (err)
                 res.send(err);
-
-            res.json({ message: 'Object created!' });
+			else
+				res.json({ message: 'Object created! ' + req.body.value });
         });
         
     })
