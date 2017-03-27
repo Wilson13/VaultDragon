@@ -55,6 +55,10 @@ router.route('/object')
 		var errors;
 		req.getValidationResult().then( result => {
 			errors = result.useFirstErrorOnly().mapped(); // enjoy an array with no duplicated errors for any given parameter!
+			if (errors) {
+				res.send(errors);
+				return;
+			} 
 		})
 		//var errors = result;
 		//var errors = req.validationErrors();
