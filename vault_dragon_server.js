@@ -58,6 +58,15 @@ router.route('/object')
         
     });
 
+	 // get all the object (accessed at GET http://localhost:8080/api/object)
+    .get(function(req, res) {
+		Object.find(function(err, object) {
+            if (err)
+                res.send(err);
+
+            res.json(object);
+        });
+    });
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
