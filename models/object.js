@@ -7,7 +7,7 @@ var ObjectSchema   = new Schema({
 	value: String,
 },
 { 
-	timestamps: { createdAt: 'created_at' } 
+	timestamps: {  } 
 });
 
 module.exports = mongoose.model('Object', ObjectSchema);
