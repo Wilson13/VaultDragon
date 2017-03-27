@@ -5,8 +5,7 @@ var Schema       = mongoose.Schema;
 var ObjectSchema   = new Schema({
     key: String,
 	value: String,
-	created_at: { type: Date, default: Date.no },
-	updated_at: { type: Date }
+	timestamps: true
 });
 
 module.exports = mongoose.model('Object', ObjectSchema);
