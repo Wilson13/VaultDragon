@@ -44,9 +44,14 @@ router.route('/object')
     // create a bear (accessed at POST http://localhost:3000/api/object)
     .post(function(req, res) {
         
-        var object = new Object();	// create a new instance of the Object model
+		var post = new Object({
+			key: req.body.key,
+			value: req.body.value
+		});
+				
+        /*var object = new Object();	// create a new instance of the Object model
         object.key = req.body.key;  // set the object key (comes from the request)
-		object.value = req.body.value;	// set the object key-paired value (comes from the request)
+		object.value = req.body.value;	// set the object key-paired value (comes from the request)*/
 
         // save the object and check for errors
         object.save(function(err) {
