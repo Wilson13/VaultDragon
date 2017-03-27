@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost'); // connect to our database
+var Object = require('./models/object');
 
 /*app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -17,7 +18,6 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 3000;        // set our port
 
-var Object = require('./models/object');
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -44,15 +44,10 @@ router.route('/object')
 
     // create a bear (accessed at POST http://localhost:3000/api/object)
     .post(function(req, res) {
-        
-		var object = new Object({
-			key: req.body.key,
-			value: req.body.value
-		});
 				
-        /*var object = new Object();	// create a new instance of the Object model
+        var object = new Object();	// create a new instance of the Object model
         object.key = req.body.key;  // set the object key (comes from the request)
-		object.value = req.body.value;	// set the object key-paired value (comes from the request)*/
+		object.value = req.body.value;	// set the object key-paired value (comes from the request)
 
         // save the object and check for errors
         object.save(function(err) {
