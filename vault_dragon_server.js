@@ -60,7 +60,7 @@ router.route('/object')
 			return;
 		} else {
 			// Find object and update it's value if it exists.
-			object.findOneAndUpdate({key : req.body.key}, {value : req.body.value} function (err, object) {
+			object.findOneAndUpdate({key : req.body.key}, {value : req.body.value}, function (err, object) {
 				if (err){
 					// Create object and check for errors
 					object.save(function(err) {
