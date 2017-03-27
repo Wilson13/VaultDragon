@@ -70,7 +70,11 @@ router.route('/object')
 							res.json({ message: 'Object created! ' + req.body.value });
 					});*/
 				} else {
-					res.json({ message: 'Object created! ' + object });
+					// If object is null, new object created
+					if (object)
+						res.json({ message: 'Object created! ' , 'Key :' + req.body.key, 'Value :' + req.body.value });
+					else
+						res.json({ message: 'Object updated! ' , 'Key :' + object.key, 'Value :' + object.value });
 				}
 			});
         }
