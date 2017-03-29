@@ -1,5 +1,6 @@
 # VaultDragon API
 
+## Specs<br />
 #### Server<br />
 Amazon EC2 (free tier)<br />
 
