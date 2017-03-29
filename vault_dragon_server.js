@@ -117,8 +117,8 @@ router.route('/object/:key')
 		
 		if (!isEmpty) {
 			// If timestamp is provided, get the timestamp at or the latest before this time.
-			Console.log( 'timeStamp: ' + timestamp);
-			Console.log( ' new Date(timestamp): ' +  new Date(timestamp));
+			console.log( 'timeStamp: ' + timestamp);
+			console.log( ' new Date(timestamp): ' +  new Date(timestamp));
 			query = { key: req.params.key, updatedAt: { $lt: new Date(timestamp) }};
 		} else {
 			// If timestamp is not provided, get the latest value.
