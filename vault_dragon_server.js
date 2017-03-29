@@ -108,12 +108,12 @@ router.route('/object/:key')
 	/* 2. Accept a key and return the corresponding latest value */
 	// get the object with that key (accessed at GET http://localhost:3000/api/object/:key)
     .get(function(req, res) {
-		Object.findOne({ key : req.params.key }, function(err, object) {
+		Object.findOne({ key : req.params.key }).sort({ updatedAt : -1 }).exec(function(err, object) {
             if (object)
                 res.json(object.value);
 			else
 				res.json( { message: 'No object with key \'' + req.params.key + '\' was found.' });
-        }).sort({ updatedAt : -1 });
+        });
     });
 
 // REGISTER OUR ROUTES -------------------------------
