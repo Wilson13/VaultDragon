@@ -117,17 +117,19 @@ router.route('/object/:key')
 		
 		if (!isEmpty) {
 			// If timestamp is provided, get the timestamp at or the latest before this time.
-			query = { key: req.params.key, updatedAt: { $lt: timestamp.toISOString() }};
+			Console.log( 'timeStamp: ' + timestamp);
+			Console.log( ' new Date(timestamp): ' +  new Date(timestamp));
+			query = { key: req.params.key, updatedAt: { $lt: new Date(timestamp) }};
 		} else {
 			// If timestamp is not provided, get the latest value.
 			query = { key: req.params.key };
 		}
 		Object.findOne(query, function(err, object) {
-				if (object)
-					res.json(object.value);
-				else
-					res.json( { message: 'No object with key \'' + req.params.key + '\' was found.' });
-			}).sort({ updatedAt : -1 });
+			if (object)
+				res.json(object.value);
+			else
+				res.json( { message: 'No object with key \'' + req.params.key + '\' was found.' });
+		}).sort({ updatedAt : -1 });
     });
 
 // REGISTER OUR ROUTES -------------------------------
