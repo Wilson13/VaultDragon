@@ -140,7 +140,7 @@ router.route('/object/:key')
 
 // On routes that end in /object/delete
 // ----------------------------------------------------
-router.route('/object/object')
+router.route('/object/delete')
 	
 	.delete(function(req, res) {
         Object.remove({
