@@ -113,14 +113,15 @@ router.route('/object/:key')
 		req.checkBody("timestamp", "Timestamp is empty").isEmpty();
 		var isEmpty = req.validationErrors();
 		
-		if (isEmpty) {
-			res.json( { message: isEmpty });
+		if (!isEmpty) {
 			Object.findOne({ key : req.params.key }, function(err, object) {
 				if (object)
 					res.json(object.value);
 				else
 					res.json( { message: 'No object with key \'' + req.params.key + '\' was found.' });
 			}).sort({ updatedAt : -1 });
+		} else {
+			res.send(isEmpty);
 		}
     });
 
