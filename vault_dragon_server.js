@@ -99,7 +99,7 @@ router.route('/object')
 			var objectMap = {};
 
 			object.forEach(function(object) {
-				objectMap[object._id] = { 'value': object.value, 'key': object.key, 'time': object.updatedAt.getTime()%1000 };
+				objectMap[object._id] = { 'value': object.value, 'key': object.key, 'time': Math.floor(object.updatedAt.getTime()/1000) };
 			});
 
 			res.send(objectMap);  
