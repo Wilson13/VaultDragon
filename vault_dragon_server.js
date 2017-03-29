@@ -15,9 +15,6 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost'); // connect to our database
 var Object = require('./models/object');
 
-/*app.get('/', (req, res) => {
-  res.send('Hello World!')
-})*/
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,7 +22,6 @@ app.use(bodyParser.json());
 app.use(validator());
 
 var port = process.env.PORT || 3000;        // set our port
-
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -105,10 +101,18 @@ router.route('/object')
 // ----------------------------------------------------
 router.route('/object/:key')
 	
-	/* 2. Accept a key and return the corresponding latest value */
 	// Get object value with that key and with the latest timestamps (accessed at GET http://localhost:3000/api/object/:key)
     .get(function(req, res) {
 	
+		// Time saved in object model is in mongoDB ISO date format, e.g. "2017-03-29T03:07:11.365Z".
+		// Therefore, according to the requirement, when a timestamp is given (without milliseconds), 
+		// it need to be convert into milliseconds. 
+		
+		// Since milliseconds value would be "000", the query would miss the actual data, e.g
+		// 		An object with updateAT value of "2017-03-29T03:07:11.365Z" would not be return if 
+		//		the query is looking for a value of lesser than "2017-03-29T03:07:11.000Z".
+		
+		// Therefore, add "999" to cover all datetime from "2017-03-29T03:07:11.000Z" to ""2017-03-29T03:07:11.999Z".
 		var timestamp = req.query.timestamp * 1000 + 999;
 		req.checkQuery("timestamp", "Timestamp is empty").notEmpty();
 		var isEmpty = req.validationErrors();
@@ -116,9 +120,11 @@ router.route('/object/:key')
 		
 		
 		if (!isEmpty) {
+			/* 3. When given a key AND a timestamp, return whatever the value of the key at the time was. */
 			// If timestamp is provided, get the timestamp at or the latest before this time.
 			query = { key: req.params.key, updatedAt: { $lt: new Date(timestamp).toISOString() }};
 		} else {
+			/* 2. Accept a key and return the corresponding latest value */
 			// If timestamp is not provided, get the latest value.
 			query = { key: req.params.key };
 		}
@@ -127,11 +133,26 @@ router.route('/object/:key')
 				res.json(object.value);
 			else {
 				res.json( { message: 'No object with key \'' + req.params.key + '\' was found. Timestamp: ' + 
-				timestamp + ' new Date(timestamp).toISOString(): ' +  new Date(timestamp).toISOString() });
+				timestamp + ' ISO date: ' +  new Date(timestamp).toISOString() });
 			}
 		}).sort({ updatedAt : -1 });
     });
 
+// On routes that end in /object/:key
+// ----------------------------------------------------
+router.route('/object/delete')
+	
+	.delete(function(req, res) {
+        Object.remove({
+        }, function(err, res) {
+            if (err)
+                res.send(err);
+
+            //res.json({ message: 'Successfully deleted' });
+			res.send(res);
+        });
+    });
+	
 // REGISTER OUR ROUTES -------------------------------
 // All of our routes will be prefixed with /api
 app.use('/api', router);
