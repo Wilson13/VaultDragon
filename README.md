@@ -18,7 +18,7 @@ http://ec2-34-208-10-36.us-west-2.compute.amazonaws.com/api<br />
 
 ---
 
-## API call<br />
+## API<br />
 
 ### Core functions
 
