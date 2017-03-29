@@ -125,9 +125,6 @@ router.route('/object/:key')
 		
 		// Therefore, add "999" to cover all datetime from "2017-03-29T03:07:11.000Z" to ""2017-03-29T03:07:11.999Z".
 		var timestamp = req.query.timestamp; //* 1000 + 999;
-		if (timestamp.length == 10)
-			timestamp = timestamp * 1000 + 999;
-			
 		req.checkQuery("timestamp", "Timestamp is empty").notEmpty();
 		var isEmpty = req.validationErrors();
 		var query = { key: req.params.key }; // Query is dependent on whether timestamp is empty
@@ -135,6 +132,8 @@ router.route('/object/:key')
 		if (!isEmpty) {
 			/* 3. When given a key AND a timestamp, return whatever the value of the key at the time was. */
 			// If timestamp is provided, get the timestamp at or the latest before this time.
+			if (timestamp.length == 10)
+				timestamp = timestamp * 1000 + 999;
 			query = { key: req.params.key, updatedAt: { $lt: new Date(timestamp).toISOString() }};
 		} else {
 			/* 2. Accept a key and return the corresponding latest value */
