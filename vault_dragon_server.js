@@ -77,7 +77,7 @@ router.route('/object')
 			   if (err)
 				res.send(err);
 			   else
-				req.json(object);
+				res.json(object);
 			});
         }
     })
