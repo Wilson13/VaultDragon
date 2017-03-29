@@ -50,5 +50,5 @@ Method: DELETE<br />
 Endpoint: http://ec2-34-208-10-36.us-west-2.compute.amazonaws.com/api/object/delete<br />
 
 ---
-Additional info:<br />
+#### Additional info:<br />
 I have no prior experience in all the above, this API is completed through the help of multiple online tutorials and Stack Overflow.
