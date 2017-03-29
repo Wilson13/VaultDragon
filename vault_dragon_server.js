@@ -117,7 +117,7 @@ router.route('/object/:key')
 		
 		if (!isEmpty) {
 			// If timestamp is provided, get the timestamp at or the latest before this time.
-			query = { key: req.params.key, updatedAt: { $lt: timestamp.toISOString() };
+			query = { key: req.params.key, updatedAt: { $lt: timestamp.toISOString() }};
 		} else {
 			// If timestamp is not provided, get the latest value.
 			query = { key: req.params.key };
