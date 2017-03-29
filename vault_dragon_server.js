@@ -96,8 +96,15 @@ router.route('/object')
             if (err)
                 res.send(err);
 
-			var returnJSON = { value: object.value, key: object.key, time: object.updateAt };
-            res.json(object);
+			var objectMap = {};
+
+			object.forEach(function(object) {
+				objectMap[_id] = user;
+			});
+
+			res.send(objectMap);  
+			/*var returnJSON = { value: object.value, key: object.key, time: object.updateAt };
+            res.json(object);*/
         });
     });
 	
