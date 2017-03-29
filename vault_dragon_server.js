@@ -143,12 +143,11 @@ router.route('/object/:key')
 router.route('/object/delete')
 	
 	.delete(function(req, res) {
-        Object.remove({}, function(err, object) {
+        Object.remove({}, function(err) {
             if (err)
 				res.send(err);
 
-            //res.json({ message: 'Successfully deleted' });
-			res.send(object);
+            res.json({ message: 'All objects delete!' });
         });
     });
 	
