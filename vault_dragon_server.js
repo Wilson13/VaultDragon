@@ -132,7 +132,6 @@ router.route('/object/:key')
 		var isEmpty = req.validationErrors();
 		var query = { key: req.params.key }; // Query is dependent on whether timestamp is empty
 		
-		
 		if (!isEmpty) {
 			/* 3. When given a key AND a timestamp, return whatever the value of the key at the time was. */
 			// If timestamp is provided, get the timestamp at or the latest before this time.
@@ -147,7 +146,7 @@ router.route('/object/:key')
 				res.json(object.value);
 			else {
 				res.json( { message: 'No object with key \'' + req.params.key + '\' was found. Timestamp: ' + 
-				timestamp + ' ISO date: ' +  new Date(timestamp).toISOString() });
+				timestamp + ' ISO date: ' +  new Date(timestamp).toISOString()/1000 });
 			}
 		}).sort({ updatedAt : -1 });
     });
