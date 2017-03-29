@@ -48,19 +48,16 @@ router.route('/object')
     .post(function(req, res) {
 
 		req.checkBody("key", "Key cannot be empty").notEmpty();
-	
 		var errors = req.validationErrors();
-        var object = new Object();	// create a new instance of the Object model
-        object.key = req.body.key;  // set the object key (comes from the request)
-		object.value = req.body.value;	// set the object key-paired value (comes from the request)
 		
 		// Validation resulted errors
 		if (errors) {
 			res.send(errors);
 			return;
 		} else {
+			// Originally wanted to use the function below, but decide to just save new Object every time for history timestamps purpose.
 			// Find object and update it's value if it exists.
-			Object.findOneAndUpdate({key : req.body.key}, {value : req.body.value}, {upsert: true, new: true}, function (err, object) {
+			/*Object.findOneAndUpdate({key : req.body.key}, {value : req.body.value}, {upsert: true, new: true}, function (err, object) {
 				if (err){
 					res.send(err);
 				} else {
@@ -71,6 +68,16 @@ router.route('/object')
 					else
 						res.json({ message: 'Object created! ' , 'Key' : + req.body.key, 'Value' : req.body.value, 'Created at' : new Date().toISOString() });
 				}
+			});*/
+			var object = new Object();	// create a new instance of the Object model
+			object.key = req.body.key;  // set the object key (comes from the request)
+			object.value = req.body.value;	// set the object key-paired value (comes from the request)
+			
+			object.save(function(err, object) {
+			   if (err)
+				res.send(err);
+			   else
+				req.json(object);
 			});
         }
     })
