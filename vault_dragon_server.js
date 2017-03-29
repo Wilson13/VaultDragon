@@ -138,14 +138,11 @@ router.route('/object/:key')
 		}).sort({ updatedAt : -1 });
     });
 
-// On routes that end in /object/:key
+// On routes that end in /object/delete
 // ----------------------------------------------------
-router.route('/object/delete')
+router.route('/object/object')
 	
 	.delete(function(req, res) {
-		res.json({ message: 'Delete' });
-	});
-	/*.delete(function(req, res) {
         Object.remove({
         }, function(err, res) {
             if (err)
@@ -154,7 +151,7 @@ router.route('/object/delete')
             //res.json({ message: 'Successfully deleted' });
 			res.send(res);
         });
-    });*/
+    });
 	
 // REGISTER OUR ROUTES -------------------------------
 // All of our routes will be prefixed with /api
