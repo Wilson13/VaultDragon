@@ -5,6 +5,7 @@ var Schema       = mongoose.Schema;
 var ObjectSchema   = new Schema({
     key: String,
 	value: String,
+	links: String
 },
 { 
 	timestamps: {  } 
