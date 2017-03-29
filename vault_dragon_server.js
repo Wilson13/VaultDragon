@@ -109,7 +109,7 @@ router.route('/object/:key')
 	// Get object value with that key and with the latest timestamps (accessed at GET http://localhost:3000/api/object/:key)
     .get(function(req, res) {
 	
-		var timestamp = req.query.timestamp;
+		var timestamp = req.query.timestamp * 1000;
 		req.checkQuery("timestamp", "Timestamp is empty").notEmpty();
 		var isEmpty = req.validationErrors();
 		var query = { key: req.params.key }; // Query is dependent on whether timestamp is empty
@@ -126,7 +126,7 @@ router.route('/object/:key')
 			if (object)
 				res.json(object.value);
 			else
-				res.json( { message: 'No object with key \'' + req.params.key + '\' was found. Timestamp: ' + (timestamp * 1000) + ' new Date(timestamp): ' +  new Date(timestamp*1000) });
+				res.json( { message: 'No object with key \'' + req.params.key + '\' was found. Timestamp: ' + timestamp + ' new Date(timestamp): ' +  new Date(timestamp) });
 		}).sort({ updatedAt : -1 });
     });
 
