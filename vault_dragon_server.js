@@ -96,7 +96,8 @@ router.route('/object')
             if (err)
                 res.send(err);
 
-            res.json(object);
+			var returnJSON = {'value': object.value, 'key': object.key, 'time': object.updateAt };
+            res.json(returnJSON);
         });
     });
 	
