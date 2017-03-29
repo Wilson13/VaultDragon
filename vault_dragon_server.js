@@ -113,7 +113,7 @@ router.route('/object/:key')
                 res.json(object.value);
 			else
 				res.json( { message: 'No object with key \'' + req.params.key + '\' was found.' });
-        }).sort({ updatedAt : -1 );
+        }).sort({ updatedAt : -1 });
     });
 
 // REGISTER OUR ROUTES -------------------------------
