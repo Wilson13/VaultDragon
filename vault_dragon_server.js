@@ -109,7 +109,7 @@ router.route('/object/:key')
 	// Get object value with that key and with the latest timestamps (accessed at GET http://localhost:3000/api/object/:key)
     .get(function(req, res) {
 	
-		var timestamp = req.body.timestamp;
+		var timestamp = req.query.timestamp;
 		req.checkQuery("timestamp", "Timestamp is empty").isEmpty();
 		var isEmpty = req.validationErrors();
 		
