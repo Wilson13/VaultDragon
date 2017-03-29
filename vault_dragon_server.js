@@ -126,7 +126,7 @@ router.route('/object/:key')
 			if (object)
 				res.json(object.value);
 			else
-				res.json( { message: 'No object with key \'' + req.params.key + '\' was found. ' +  new Date(timestamp): ' +  new Date(timestamp));' });
+				res.json( { message: 'No object with key \'' + req.params.key + '\' was found. new Date(timestamp): ' +  new Date(timestamp)); });
 		}).sort({ updatedAt : -1 });
     });
 
