@@ -110,7 +110,7 @@ router.route('/object/:key')
     .get(function(req, res) {
 	
 		var timestamp = req.body.timestamp;
-		req.checkBody("timestamp", "Timestamp is empty").isEmpty();
+		req.checkQuery("timestamp", "Timestamp is empty").isEmpty();
 		var isEmpty = req.validationErrors();
 		
 		if (!isEmpty) {
