@@ -143,15 +143,18 @@ router.route('/object/:key')
 router.route('/object/delete')
 	
 	.delete(function(req, res) {
+		res.json({ message: 'Delete' });
+	});
+	/*.delete(function(req, res) {
         Object.remove({
         }, function(err, res) {
             if (err)
-                res.send(err);
+				res.send(err);
 
             //res.json({ message: 'Successfully deleted' });
 			res.send(res);
         });
-    });
+    });*/
 	
 // REGISTER OUR ROUTES -------------------------------
 // All of our routes will be prefixed with /api
