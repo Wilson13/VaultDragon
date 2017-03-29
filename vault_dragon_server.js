@@ -112,17 +112,22 @@ router.route('/object/:key')
 		var timestamp = req.query.timestamp;
 		req.checkQuery("timestamp", "Timestamp is empty").notEmpty();
 		var isEmpty = req.validationErrors();
+		var query = { key: req.params.key }; // Query is dependent on whether timestamp is empty
+		
 		
 		if (!isEmpty) {
-			Object.findOne({ key : req.params.key }, function(err, object) {
+			// If timestamp is provided, get the timestamp at or the latest before this time.
+			query = { key: req.params.key, updatedAt: { $lt: timestamp.toISOString() };
+		} else {
+			// If timestamp is not provided, get the latest value.
+			query = { key: req.params.key };
+		}
+		Object.findOne(query, function(err, object) {
 				if (object)
 					res.json(object.value);
 				else
 					res.json( { message: 'No object with key \'' + req.params.key + '\' was found.' });
 			}).sort({ updatedAt : -1 });
-		} else {
-			res.send(isEmpty);
-		}
     });
 
 // REGISTER OUR ROUTES -------------------------------
