@@ -77,7 +77,7 @@ router.route('/object')
 			var object = new Object();	// create a new instance of the Object model
 			object.key = req.body.key;  // set the object key (comes from the request)
 			object.value = req.body.value;	// set the object key-paired value (comes from the request)
-			object.links = '[{ \"href\": \"/object/\"'+object.key+'\" }], { \"rel\": \"self\" }, { \"method\": \"GET\" }]';
+			object.links = '[{ "href": "/object/"'+object.key+'" }], { \"rel\": \"self\" }, { \"method\": \"GET\" }]';
 			
 			object.save(function(err, object) {
 			   if (err)
