@@ -1,10 +1,20 @@
 # VaultDragon API
 
-Server: Amazon EC2 (free tier)<br />
-URL: "ec2-34-208-10-36.us-west-2.compute.amazonaws.com"<br />
-Stack: Node.js, MongoDB, Express.js, Mongoose.js, Express-validator.<br />
-Process Manager: PM2<br />
+#### Server<br />
+Amazon EC2 (free tier)<br />
 
+#### Test URL<br />
+http://ec2-34-208-10-36.us-west-2.compute.amazonaws.com/api<br />
+
+#### Stack
+- Node.js
+- MongoDB
+- Express.js
+- Mongoose.js
+- Express-validator
+
+#### Process Manager<br />
+- PM2<br />
 
 ---
 
