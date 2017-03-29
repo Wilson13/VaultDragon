@@ -99,7 +99,7 @@ router.route('/object')
 			var objectMap = {};
 
 			object.forEach(function(object) {
-				objectMap[object._id] = { 'value': object.value, 'key': object.key, 'time': object.updatedAt.getTime() };
+				objectMap[object._id] = { 'value': object.value, 'key': object.key, 'time': object.updatedAt.getTime()/1000 };
 			});
 
 			res.send(objectMap);  
@@ -146,7 +146,7 @@ router.route('/object/:key')
 				res.json(object.value);
 			else {
 				res.json( { message: 'No object with key \'' + req.params.key + '\' was found. Timestamp: ' + 
-				timestamp + ' ISO date: ' +  new Date(timestamp).toISOString()%1000 });
+				timestamp + ' ISO date: ' +  new Date(timestamp).toISOString() });
 			}
 		}).sort({ updatedAt : -1 });
     });
