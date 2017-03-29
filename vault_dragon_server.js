@@ -146,7 +146,7 @@ router.route('/object/:key')
 				res.json(object.value);
 			else {
 				res.json( { message: 'No object with key \'' + req.params.key + '\' was found. Timestamp: ' + 
-				timestamp + ' ISO date: ' +  new Date(timestamp).toISOString()/1000 });
+				timestamp + ' ISO date: ' +  new Date(timestamp).toISOString()%1000 });
 			}
 		}).sort({ updatedAt : -1 });
     });
