@@ -124,7 +124,10 @@ router.route('/object/:key')
 		//		the query is looking for a value of lesser than "2017-03-29T03:07:11.000Z".
 		
 		// Therefore, add "999" to cover all datetime from "2017-03-29T03:07:11.000Z" to ""2017-03-29T03:07:11.999Z".
-		var timestamp = req.query.timestamp * 1000 + 999;
+		var timestamp = req.query.timestamp; //* 1000 + 999;
+		if (timestamp.length == 10)
+			timestamp = timestamp * 1000 + 999;
+			
 		req.checkQuery("timestamp", "Timestamp is empty").notEmpty();
 		var isEmpty = req.validationErrors();
 		var query = { key: req.params.key }; // Query is dependent on whether timestamp is empty
