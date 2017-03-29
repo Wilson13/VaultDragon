@@ -122,6 +122,7 @@ router.route('/object/:key')
 			query = { key: req.params.key, updatedAt: { $lt: new Date(timestamp) }};
 		} else {
 			// If timestamp is not provided, get the latest value.
+			console.log( 'timeStamp: empty');
 			query = { key: req.params.key };
 		}
 		Object.findOne(query, function(err, object) {
